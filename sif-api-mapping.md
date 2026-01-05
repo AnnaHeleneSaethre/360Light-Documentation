@@ -41,7 +41,7 @@ using the email address retrieved from the Entra authentication token.
 This functionality enables managers to assign unassigned documents to appropriate
 case handlers or organizational units.
 
-### Retrieve Documents Awaiting Assignment
+#### Retrieve Documents Awaiting Assignment
 Documents that have been routed to the manager's organizational unit but have not
 yet been assigned to a responsible person are retrieved for display.
 
@@ -72,7 +72,7 @@ yet been assigned to a responsible person are retrieved for display.
 - `ToOrgUnit`: The organizational unit of the logged-in manager (retrieved from user context)
 - `OurRef` with `IS NULL`: Filters for documents without an assigned responsible person
 
-### Retrieve Available Case Handlers (Persons)
+#### Retrieve Available Case Handlers (Persons)
 When the manager chooses to assign a document to a specific person, the application
 retrieves a list of available case handlers within the organization.
 
@@ -95,7 +95,7 @@ retrieves a list of available case handlers within the organization.
 - `EmployerID`: The enterprise recno representing the organization
 - Value is derived from the user context established during authentication
 
-### Retrieve Available Organizational Units (Enterprises)
+#### Retrieve Available Organizational Units (Enterprises)
 When the manager chooses to assign a document to another organizational unit, the
 application retrieves a list of available enterprises.
 
@@ -112,7 +112,7 @@ application retrieves a list of available enterprises.
 - This request retrieves all enterprises available in the system
 - No filtering is applied at the API level
 
-### Assign Document to Case Handler or Unit
+#### Assign Document to Case Handler or Unit
 After the manager selects either a person or an organizational unit, the document
 is updated with the appropriate assignment.
 
