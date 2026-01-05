@@ -96,3 +96,42 @@ Managers can:
 
 The purpose of this functionality is to ensure that incoming documents are routed
 efficiently, without delays caused by unclear ownership or unfamiliar workflows.
+
+### 6.2 Documents with Deadline
+
+This work list provides managers with an overview of documents that are approaching
+or have exceeded their assigned deadlines.
+
+Managers can:
+- View documents sorted by due date
+- Identify items at risk of delay
+- Open documents for review and follow-up
+
+This functionality supports timely handling of documents and helps prevent missed
+deadlines by making time-sensitive items clearly visible.
+
+### 6.3 Documents to Handle
+
+This work list contains documents that require direct action or decision by the
+manager.
+
+Managers can:
+- Review documents assigned to them
+- Perform required actions, such as providing input or making decisions
+- Track which items are awaiting their response
+
+The purpose of this functionality is to ensure that managerial responsibilities
+are clearly identified and acted upon without unnecessary delays.
+
+### 6.4 Documents to Approve
+
+This work list presents documents that are awaiting managerial approval before they
+can proceed in the case handling process.
+
+Managers can:
+- Review documents pending approval
+- Approve or reject documents based on their assessment
+- Ensure that decisions are documented and traceable
+
+This functionality enables efficient decision-making while ensuring that approvals
+are handled in a controlled and compliant manner.
