@@ -23,9 +23,11 @@ using the email address retrieved from the Entra authentication token.
 `UserService/GetUsers`
 
 **Request Example:**
+```json
 {
   "UserId": "anna.saethre@tietoevry.com"
 }
+```
 
 **Notes:**
 - The `UserId` value is dynamically populated from the Entra ID authentication token.
