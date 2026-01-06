@@ -332,3 +332,70 @@ recipient are retrieved for display.
 - `ToDocumentType`: Filters for specific document types. `3`: X-note & `4`: N-note.
 - `ToActivityContact` with `ToContactperson`: The ContactRecno og the logged-in manager (retrieved from user context)
 - `ToActivityContact` with `ToRole`: Filters for the "Copy to" role. `8`: Copy recipient role (From Activity - Contact Role code table)  
+
+
+## Documents for Approval
+This functionality presents workflow activities where the manager is required to
+approve documents before they can proceed in the case handling process.
+
+### Retrieve Workflow Activities Requiring Manager Approval
+Workflow activities where the manager is registered as a participant are retrieved
+for display. Due to current API limitations, additional client-side filtering is
+required to identify activities where the manager's approval is pending.
+
+**SIF API Method:**  
+`ActivityService/GetWorkFlowActivities`
+
+**Request Example:**
+```json
+{
+  "AdditionalRelations": [
+    {
+      "Name": "ToActivityContact",
+      "FieldCriteria": [
+        {
+          "Name": "ToContactperson",
+          "Value": "200009"
+        }
+      ]
+    },
+    {
+      "Name": "ActivityStatus",
+      "FieldCriteria": [
+        {
+          "Name": "ActivityTypes",
+          "Value": "50021"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Notes:**
+- `ToActivityContact` with `ToContactperson`: The ContactRecno of the logged-in manager (retrieved from user context)
+- `ActivityStatus ` with `ActivityTypes`: Filters for workflow activity types. `50001`: Approval workflow type
+
+API Limitation: 
+The current SIF API does not support filtering based on nested relations, specifically the individual activity status of each recipient within a workflow.
+
+Current behavior:
+- The API returns al workflow activities where the manager is a participant
+This includes workflows where:
+- The manager has already approved
+- The manager still needs to approve
+- The manager is registered but no yet required to act
+
+Client-Side Filtering: After retrieving the workflow activities, the application performs additional filtering
+to display only activities where:
+- The manager's individual recipient status is "Open"
+- The workflow itself has not been completed
+- The manager's approval action is currently required
+
+Future Enhancement:
+Once the SIF API provides support for workflow approval actions, the application
+will be updated to enable in-app approval functionality, including:
+- Direct approval/rejection actions
+- Approval comments and remarks
+- Status updates without leaving the 360Light interface
+- Real-time workflow progression
