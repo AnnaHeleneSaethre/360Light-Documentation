@@ -277,3 +277,58 @@ sign off the document with a response code and optional remarks.
 - `Document`: The document number of the document being signed off
 - `ResponseCode`: The response code indicating the type of sign-off. TO: "Til Orientering"
 - `Note`: Free-text remarks from the manager regarding the sign-off 
+
+
+## Your Copies for Review
+This functionality provides managers with a read-only overview of documents where
+they have been registered as a copy recipient. These are typically X-notes and N-notes
+shared for informational purposes, where no action is required from the manager.
+
+### Retrieve Documents Where Manager is Copy Recipient
+Documents of type X-note and N-note where the manager is registered as a copy
+recipient are retrieved for display.
+
+**SIF API Method:**  
+`DocumentService/GetDocuments`
+
+**Request Example:**
+```json
+{
+  "AdditionalListField": [
+    {
+      "Name": "ToDocumentType",
+      "FieldCriteria": [
+        {
+          "Name": "Recno",
+          "Value": "3, 4"
+        }
+      ]
+    }
+  ],
+  "AdditionalRelations": [
+    {
+      "Name": "ToActivityContact",
+      "FieldCriteria": [
+        {
+          "Name": "ToContactperson",
+          "Value": "414583"
+        }
+      ]
+    },
+    {
+      "Name": "ToActivityContact",
+      "FieldCriteria": [
+        {
+          "Name": "ToRole",
+          "Value": "8"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**Notes:**
+- `ToDocumentType`: Filters for specific document types. `3`: X-note & `4`: N-note.
+- `ToActivityContact` with `ToContactperson`: The ContactRecno og the logged-in manager (retrieved from user context)
+- `ToActivityContact` with `ToRole`: Filters for the "Copy to" role. `8`: Copy recipient role (From Activity - Contact Role code table)  
