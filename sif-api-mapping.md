@@ -376,23 +376,23 @@ required to identify activities where the manager's approval is pending.
 - `ToActivityContact` with `ToContactperson`: The ContactRecno of the logged-in manager (retrieved from user context)
 - `ActivityStatus ` with `ActivityTypes`: Filters for workflow activity types. `50001`: Approval workflow type
 
-API Limitation: 
+**API Limitation:** 
 The current SIF API does not support filtering based on nested relations, specifically the individual activity status of each recipient within a workflow.
 
-Current behavior:
+**Current behavior:**
 - The API returns al workflow activities where the manager is a participant
 This includes workflows where:
 - The manager has already approved
 - The manager still needs to approve
 - The manager is registered but no yet required to act
 
-Client-Side Filtering: After retrieving the workflow activities, the application performs additional filtering
+**Client-Side Filtering:** After retrieving the workflow activities, the application performs additional filtering
 to display only activities where:
 - The manager's individual recipient status is "Open"
 - The workflow itself has not been completed
 - The manager's approval action is currently required
 
-Future Enhancement:
+**Future Enhancement:**
 Once the SIF API provides support for workflow approval actions, the application
 will be updated to enable in-app approval functionality, including:
 - Direct approval/rejection actions
