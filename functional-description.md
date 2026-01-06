@@ -130,7 +130,7 @@ can proceed in the case handling process.
 
 Managers can:
 - Review documents pending approval
-- Approve or reject documents based on their assessment
+- Approve or reject documents based on their assessment (coming feature)
 - Ensure that decisions are documented and traceable
 
 This functionality enables efficient decision-making while ensuring that approvals
