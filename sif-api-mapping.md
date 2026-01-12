@@ -399,3 +399,37 @@ will be updated to enable in-app approval functionality, including:
 - Approval comments and remarks
 - Status updates without leaving the 360Light interface
 - Real-time workflow progression
+
+
+## Logging
+### Retrieve Workflow Activities Requiring Manager Approval
+SIF automatically logs requests related to creation and updates of entities such as cases, documents, and contacts.
+However, **viewing (reading) files** in the application does not generate a log entry automatically.
+
+To ensure that file access is tracable, a log entry must be explicitly created **when a user opens a file** in the application.
+
+This is handled by calling `CreateLog` for the individual file. The log entry is stored directly on the **File entity** in Public 360 and documents that the user has opened and read the file.
+
+**SIF API Method:**  
+`SupportService/CreateLog`
+
+**When is this triggered?**
+- When a user clicks to open a file in the application
+- Used specifically for **read/access logging**
+- Applies to files associated with documents in Public360
+
+**Request Example:**
+```json
+{
+  "EntityRecno": 200883,
+  "EntityName": "File",
+  "Logdata": "File is opened and read by Anna Helene Sæthre",
+  "ExternalSystemName": "360Light"
+}
+```
+
+**Notes:**
+- `EntityRecno`: The `FileRecno` of the file being opened (dynamic value)
+- `EntityName`: Always set to `File` when logging file access
+- `Logdata`: Descriptive log message indicating that the file has been opened and read. The user name is dynamically populated from the logged-in user context
+- `ExternalSystemName`: Identifies the calling system. Value: `360Light` 
