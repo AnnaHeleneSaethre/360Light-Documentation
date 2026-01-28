@@ -153,6 +153,8 @@ with follow-up requirements.
 
 **SIF API Method:**  
 `DocumentService/GetDocuments`
+Additional method to add managers name to the document audit log: 
+`SupportService/CreateLog`
 
 **Request Example:**
 ```json
@@ -378,13 +380,15 @@ required to identify activities where the manager's approval is pending.
 
 **API Limitation:** 
 The current SIF API does not support filtering based on nested relations, specifically the individual activity status of each recipient within a workflow.
+Approval of the workflow activity is currently not supported.
 
 **Current behavior:**
-- The API returns al workflow activities where the manager is a participant
+- We have made a link that takes the manager directly to the workflow view in Public360 as a temp solution until approval of workflows is doable from the API. 
+- The API returns all workflow activities where the manager is a participant
 This includes workflows where:
 - The manager has already approved
 - The manager still needs to approve
-- The manager is registered but no yet required to act
+- The manager is registered but not yet required to act
 
 **Client-Side Filtering:** After retrieving the workflow activities, the application performs additional filtering
 to display only activities where:
@@ -409,6 +413,8 @@ However, **viewing (reading) files** in the application does not generate a log 
 To ensure that file access is tracable, a log entry must be explicitly created **when a user opens a file** in the application.
 
 This is handled by calling `CreateLog` for the individual file. The log entry is stored directly on the **File entity** in Public 360 and documents that the user has opened and read the file.
+
+`CreateLog` is also used together with the `SignOffDocument` method to ensure that the managers name gets added to the documents audit log, not just the endpoint Service Account. 
 
 **SIF API Method:**  
 `SupportService/CreateLog`
